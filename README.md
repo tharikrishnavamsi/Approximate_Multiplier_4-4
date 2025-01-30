@@ -54,18 +54,18 @@ carry bits denpending upon width of the output:
 
 ---
 
-Example: 4:2 Compressor (4 Inputs, 2 Outputs)**
+Example: 4:2 Compressor (4 Inputs, 2 Outputs)
 
-| **Inputs (X1, X2, X3, X4)** | **Sum Output** | **Carry Output** |
-|-----------------------------|----------------|------------------|
-| 0000                        | 0              | 0                |
-| 0001                        | 1              | 0                |
-| 0011                        | 2              | 0                |
-| 1111                        | 0              | 2                |
+| **Inputs (a,b,c,d)** | **Sum Output** | **Carry Output** |
+|----------------------|----------------|------------------|
+| 0000                 | 0              | 0                |
+| 0001                 | 1              | 0                |
+| 0011                 | 2              | 0                |
+| 1111                 | 0              | 2                |
 
 ### **Circuit Design for 4:2 Compressor**
-- **Step 1:** Use a **full adder (FA)** to combine `X1`, `X2`, and `X3`.
-- **Step 2:** Use a second **full adder (FA)** to take the sum from the first and `X4`.
+- **Step 1:** Use a **full adder (FA)** to combine `a`, `b`, and `c`.
+- **Step 2:** Use a second **full adder (FA)** to take the sum from the first and `d`.
 
 ---
 
