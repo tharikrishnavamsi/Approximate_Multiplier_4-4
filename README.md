@@ -67,6 +67,43 @@ example: 4:2 compressor (4 inputs, 2 outputs)
 
 ---
 
+# approximate_multiplier
+till now we have seen how to make an exact multiplier now coming to real part how to make an approximate version.
+
+## approximate_half_adder:
+- **sum** = a + b
+- **carry** = a ⋅ b
+weel we can think that what does it change but XOR gates are slightly more complex in terms of transistor count compared to OR gates.
+
+| a | b | sum | carry |
+|---|---|-----|-------|
+| 0 | 0 | 0   | 0     |
+| 0 | 1 | 1   | 0     |
+| 1 | 0 | 1   | 0     |
+| 1 | 1 | 1   | 1     |
+
+## full_adder:
+- **sum** = a + b + cin
+- **carry** = (a ⋅ b) + (b ⋅ cin)
+
+| a | b | cin | sum | cout |
+|---|---|-----|-----|------|
+| 0 | 0 |  0  |  0  |  0   |
+| 0 | 0 |  1  |  1  |  0   |
+| 0 | 1 |  0  |  1  |  0   |
+| 0 | 1 |  1  |  1  |  1   |
+| 1 | 0 |  0  |  1  |  0   |
+| 1 | 0 |  1  |  1  |  0   |
+| 1 | 1 |  0  |  1  |  1   |
+| 1 | 1 |  1  |  1  |  1   |
+
+## compressor:
+We will make this approximate compressor just by combining two approximate full adders.
+
+## partial_product_transformation:
+
+---
+
 
 
 
