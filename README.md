@@ -75,33 +75,16 @@ till now we have seen how to make an exact multiplier now coming to real part ho
 - **carry** = a ⋅ b
 weel we can think that what does it change but XOR gates are slightly more complex in terms of transistor count compared to OR gates.
 
-| a | b | sum | carry |
-|---|---|-----|-------|
-| 0 | 0 | 0   | 0     |
-| 0 | 1 | 1   | 0     |
-| 1 | 0 | 1   | 0     |
-| 1 | 1 | 1   | 1     |
+<table> <thead> <tr> <th colspan="2">Inputs</th> <th colspan="2">Exact</th> <th colspan="2">Approximate</th> </tr> <tr> <th>a</th> <th>b</th> <th>sum</th> <th>carry</th> <th>sum</th> <th>carry</th> </tr> </thead> <tbody> <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr> <tr><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td></tr> <tr><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td></tr> <tr><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td></tr> </tbody> </table>
 
 ## full_adder:
 - **sum** = a + b + cin
 - **carry** = (a ⋅ b) + (b ⋅ cin)
 
-| a | b | cin | sum | cout |
-|---|---|-----|-----|------|
-| 0 | 0 |  0  |  0  |  0   |
-| 0 | 0 |  1  |  1  |  0   |
-| 0 | 1 |  0  |  1  |  0   |
-| 0 | 1 |  1  |  1  |  1   |
-| 1 | 0 |  0  |  1  |  0   |
-| 1 | 0 |  1  |  1  |  0   |
-| 1 | 1 |  0  |  1  |  1   |
-| 1 | 1 |  1  |  1  |  1   |
+<table> <thead> <tr> <th colspan="3">Inputs</th> <th colspan="2">Exact</th> <th colspan="2">Approximate</th> </tr> <tr> <th>a</th> <th>b</th> <th>cin</th> <th>sum</th> <th>carry</th> <th>sum</th> <th>carry</th> </tr> </thead> <tbody> <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr> <tr><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td></tr> <tr><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td></tr> <tr><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td></tr> <tr><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td></tr> <tr><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td></tr> <tr><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td></tr> <tr><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td></tr> </tbody> </table>
 
 ## compressor:
 We will make this approximate compressor just by combining two approximate full adders.      
-       
-### Approximate Full Adder Circuit Representation
-
 ```
        A      B      C
        │      │      │
@@ -112,8 +95,8 @@ We will make this approximate compressor just by combining two approximate full 
        │               
        |               
        │               
-       │               D
-       │               │
+       │             D
+       │             │
    ┌───▼─────────────▼──┐
    │  Approximate Full  │
    │       Adder        │
@@ -122,13 +105,19 @@ We will make this approximate compressor just by combining two approximate full 
        ▼             ▼
      Carry          Sum
 ```
-
+<table> <thead> <tr> <th rowspan="2">A</th> <th rowspan="2">B</th> <th rowspan="2">C</th> <th rowspan="2">D</th> <th colspan="2">Exact</th> <th colspan="2">Approximate</th> </tr> <tr> <th>Sum</th> <th>Carry</th> <th>Sum</th> <th>Carry</th> </tr> </thead> <tbody> <tr> <td>0</td> <td>0</td> <td>0</td> <td>0</td> <td>0</td> <td>0</td> <td>0</td> <td>0</td> </tr> <tr> <td>0</td> <td>0</td> <td>0</td> <td>1</td> <td>1</td> <td>0</td> <td>1</td> <td>0</td> </tr> <tr> <td>0</td> <td>0</td> <td>1</td> <td>0</td> <td>1</td> <td>0</td> <td>1</td> <td>0</td> </tr> <tr> <td>0</td> <td>0</td> <td>1</td> <td>1</td> <td>0</td> <td>1</td> <td>1</td> <td>1</td> </tr> <tr> <td>0</td> <td>1</td> <td>0</td> <td>0</td> <td>1</td> <td>0</td> <td>1</td> <td>0</td> </tr> <tr> <td>0</td> <td>1</td> <td>0</td> <td>1</td> <td>0</td> <td>1</td> <td>1</td> <td>1</td> </tr> <tr> <td>0</td> <td>1</td> <td>1</td> <td>0</td> <td>0</td> <td>1</td> <td>1</td> <td>0</td> </tr> <tr> <td>0</td> <td>1</td> <td>1</td> <td>1</td> <td>1</td> <td>1</td> <td>1</td> <td>1</td> </tr> <tr> <td>1</td> <td>0</td> <td>0</td> <td>0</td> <td>1</td> <td>0</td> <td>1</td> <td>0</td> </tr> <tr> <td>1</td> <td>0</td> <td>0</td> <td>1</td> <td>0</td> <td>1</td> <td>1</td> <td>1</td> </tr> <tr> <td>1</td> <td>0</td> <td>1</td> <td>0</td> <td>0</td> <td>1</td> <td>1</td> <td>0</td> </tr> <tr> <td>1</td> <td>0</td> <td>1</td> <td>1</td> <td>1</td> <td>1</td> <td>1</td> <td>1</td> </tr> <tr> <td>1</td> <td>1</td> <td>0</td> <td>0</td> <td>0</td> <td>1</td> <td>1</td> <td>0</td> </tr> <tr> <td>1</td> <td>1</td> <td>0</td> <td>1</td> <td>1</td> <td>1</td> <td>1</td> <td>1</td> </tr> <tr> <td>1</td> <td>1</td> <td>1</td> <td>0</td> <td>1</td> <td>1</td> <td>1</td> <td>0</td> </tr> <tr> <td>1</td> <td>1</td> <td>1</td> <td>1</td> <td>0</td> <td>1</td> <td>1</td> <td>1</td> </tr> </tbody> </table>
 
 ## partial_product_transformation:
 the approximation involves the transformation of partial product terms a<sub>m,n</sub> and a<sub>n,m</sub> ( a<sub>m,n</sub> = a[m] $\times$ b[n] ) into propagate and generate terms:
 - p<sub>m,n</sub> = a<sub>m,n</sub> $+$ a<sub>n,m</sub>
 - g<sub>m,n</sub> = a<sub>m,n</sub> $\cdot$ a<sub>n,m</sub>
 - a<sub>m,m</sub> terms are retained.
+
+the generate signal g<sub>m,n</sub> has the probability of being 1/16, which is less than the probability of p<sub>m,n</sub>. this is significantly lower than 1/4, the probability of a<sub>m,n</sub>. the probability of the altered partial product p<sub>m,n</sub> being one is 1/16 + 3/16 + 3/16 = 7/16, which is higher than g<sub>m,n</sub>.
+### why all this ?
+observe the truth table of approximate compressor we are using the errors occure when we have c or d as 1, when we replace partial products with propagate and generate terms we are making the first two number which we going to use as a and b to be more probable to become 1 and decrese that of the last two c and d hence getting a better approximation.
+
+## you can see the order of using approximate compressors and adders in the verilog implementation.
 ---
 
 
