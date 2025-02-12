@@ -1,4 +1,4 @@
-# approximate_multiplier_4x4
+# approximate_multiplier_4×4
 in this we are going to go through some prerequisites to understand how approximate adders work and how can these be implemented into approximate multipliers.
 
 # exact_multiplier
@@ -98,10 +98,37 @@ weel we can think that what does it change but XOR gates are slightly more compl
 | 1 | 1 |  1  |  1  |  1   |
 
 ## compressor:
-We will make this approximate compressor just by combining two approximate full adders.
+We will make this approximate compressor just by combining two approximate full adders.      
+       
+### Approximate Full Adder Circuit Representation
+
+```
+       A      B      C
+       │      │      │
+   ┌───▼──────▼──────▼───┐
+   │  Approximate Full   │-- ► Cout
+   │       Adder         │
+   └───┬─────────────────┘
+       │               
+       |               
+       │               
+       │               D
+       │               │
+   ┌───▼─────────────▼──┐
+   │  Approximate Full  │
+   │       Adder        │
+   └───┬─────────────┬──┘
+       │             │
+       ▼             ▼
+     Carry          Sum
+```
+
 
 ## partial_product_transformation:
-
+the approximation involves the transformation of partial product terms a<sub>m,n</sub> and a<sub>n,m</sub> ( a<sub>m,n</sub> = a[m] $\times$ b[n] ) into propagate and generate terms:
+- p<sub>m,n</sub> = a<sub>m,n</sub> $+$ a<sub>n,m</sub>
+- g<sub>m,n</sub> = a<sub>m,n</sub> $\cdot$ a<sub>n,m</sub>
+- a<sub>m,m</sub> terms are retained.
 ---
 
 
